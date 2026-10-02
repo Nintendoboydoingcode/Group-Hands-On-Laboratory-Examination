@@ -155,7 +155,7 @@ The AI-generated architecture is realistic for a 3-hour prototype because it use
 
 ## Task 2: AI-Assisted Frontend Development
 
-**Lead:** Member 2 (Frontend Engineer) · **Tool used:** Claude (Anthropic) · **Location:** `/frontend`
+**Lead:** Member 2 (Frontend Engineer) · **Tool used:** v0 by Vercel · **Location:** `/frontend`
 
 ### 2.1 Prompt Summary
 
