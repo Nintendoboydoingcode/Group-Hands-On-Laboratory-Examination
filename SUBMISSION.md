@@ -2,11 +2,11 @@
 
 ## Team Roster
 
-| Member | Name | Assigned Role | Core Responsibilities |
-|---|---|---|---|
-| Member 1 | John Cyrel S Nazareno | Systems Architect & Prompt Lead | Task 1 + Task 5 |
-| Member 2 | Marwan T Bawayan | Frontend Engineer | Task 2 |
-| Member 3 |  | Database & Backend Engineer | Task 3 |
+| Member   | Name                  | Assigned Role                   | Core Responsibilities |
+|----------|-----------------------|---------------------------------|-----------------------|
+| Member 1 | John Cyrel S Nazareno | Systems Architect & Prompt Lead | Task 1 + Task 4       |
+| Member 2 | Marwan T Bawayan      | Frontend Engineer               | Task 2 + Task 4       |
+| Member 3 | Carl Timtiman         | Database & Backend Engineer     | Task 3 + Task 4       |
 
 
 ---
