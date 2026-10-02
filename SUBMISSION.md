@@ -415,7 +415,7 @@ The prototype does not include a running API; the frontend uses sample data and 
 
 ### AI Disclosure Statement
 
-**AI tools used:** Claude (Anthropic) generated the Task 1 system design, the Task 3 database design, ERD and SQL script, and the Task 4 unit tests, security diagnosis and refactored code. The Task 2 frontend was generated with [state the tool used for Task 2].
+**AI tools used:** Claude (Anthropic) generated the Task 1 system design, the Task 3 database design, ERD and SQL script, and the Task 4 unit tests, security diagnosis and refactored code. The Task 2 frontend was generated with v0 by Vercel.
 
 **How outputs were verified:**
 - Task 1: compared against the exam's requirements and the team's actual size, roles and file layout.
