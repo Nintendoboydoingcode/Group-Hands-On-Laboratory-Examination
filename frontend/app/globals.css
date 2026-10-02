@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Contrast ratios noted against their paired background */
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #0f172a; /* slate-900, 17.8:1 */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #047857; /* emerald-700, 5.5:1 with white */
+  --primary-hover: #065f46;
+  --primary-foreground: #ffffff;
+  --secondary: #d1fae5; /* mint */
+  --secondary-foreground: #064e3b; /* 8.9:1 */
+  --muted: #f1f5f9; /* soft light gray */
+  --muted-foreground: #475569; /* slate-600, 6.9:1 on muted */
+  --accent: #ecfdf5;
+  --accent-foreground: #064e3b;
+  --highlight: #bef264; /* lime-300 */
+  --highlight-foreground: #1a2e05; /* 13:1 */
+  --destructive: #b91c1c; /* 6.5:1 on white */
+  --border: #cbd5e1;
+  --input: #64748b; /* 4.8:1 visible input boundaries */
+  --ring: #059669; /* 3.8:1 non-text contrast */
+  --radius: 0.75rem;
+}
+
+.hc {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --card-foreground: #ffffff;
+  --popover: #0a0a0a;
+  --popover-foreground: #ffffff;
+  --primary: #4ade80;
+  --primary-hover: #86efac;
+  --primary-foreground: #000000;
+  --secondary: #052e16;
+  --secondary-foreground: #bbf7d0;
+  --muted: #111111;
+  --muted-foreground: #e5e5e5;
+  --accent: #052e16;
+  --accent-foreground: #dcfce7;
+  --highlight: #facc15;
+  --highlight-foreground: #000000;
+  --destructive: #fca5a5;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #facc15;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  /* Dimmer than typed text so placeholders aren't mistaken for values; still 7.9:1 on black */
+  .hc ::placeholder {
+    color: #a3a3a3;
+    font-style: italic;
+  }
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
