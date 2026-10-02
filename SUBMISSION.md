@@ -161,7 +161,7 @@ The AI-generated architecture is realistic for a 3-hour prototype because it use
 
 Claude was prompted as a professional frontend engineer and UI/UX designer to build an Event Catalog & Registration Form prototype in HTML5, CSS3 and vanilla JavaScript with no backend. The prompt required semantic HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`), at least six sample events, search and category/date filtering, a full registration form with client-side validation, an accessible confirmation panel, a responsive layout, and basic WCAG/POUR accessibility.
 
-### 2.2 Output
+### 2.2 Output (jc paupdate thanks)
 
 | File | Purpose |
 |---|---|
