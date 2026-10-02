@@ -4,7 +4,7 @@
 
 | Member | Name | Assigned Role | Core Responsibilities |
 |---|---|---|---|
-| Member 1 | John Cyrel S Nazareno | Systems Architect & Prompt Lead | Task 1, and half of Task 4 |
+| Member 1 | John Cyrel S Nazareno | Systems Architect & Prompt Lead | Task 1, Task 5, and half of Task 4 |
 | Member 2 | Marwan T Bawayan | Frontend Engineer | Task 2 |
 | Member 3 | Carl Timtiman | Database & Backend Engineer | Task 3 and half of Task 4 |
 
@@ -155,36 +155,56 @@ The AI-generated architecture is realistic for a 3-hour prototype because it use
 
 ## Task 2: AI-Assisted Frontend Development
 
-**Lead:** Member 2 (Frontend Engineer) · **Tool used:** v0 by Vercel · **Location:** `/frontend`
+**Lead:** Member 2 (Frontend Engineer) · **Tool used:** [state the tool used, e.g. v0 or Claude] · **Location:** `/frontend`
 
 ### 2.1 Prompt Summary
 
-Claude was prompted as a professional frontend engineer and UI/UX designer to build an Event Catalog & Registration Form prototype in HTML5, CSS3 and vanilla JavaScript with no backend. The prompt required semantic HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`), at least six sample events, search and category/date filtering, a full registration form with client-side validation, an accessible confirmation panel, a responsive layout, and basic WCAG/POUR accessibility.
+The AI tool was prompted as a professional frontend engineer and UI/UX designer to build an Event Catalog & Registration Form prototype with no backend. The prompt required semantic HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`), at least six sample events, search and category/date filtering, a full registration form with client-side validation, an accessible confirmation message, a responsive layout, and basic WCAG/POUR accessibility. The prompt asked for HTML, CSS and vanilla JavaScript but allowed a framework if the implementation stayed simple.
 
-### 2.2 Output (jc paupdate thanks)
+### 2.2 Output
 
-| File | Purpose |
-|---|---|
-| `frontend/index.html` | Semantic page structure: header and navigation, hero, filter section, event catalog, registration form, footer, confirmation dialog |
-| `frontend/style.css` | Design tokens, responsive Grid/Flexbox layout, button states, visible focus styles |
-| `frontend/script.js` | Event data, search and filtering, event selection, form validation, confirmation |
-| `frontend/images/` | Six local SVG event illustrations |
+The tool generated a **Next.js (React + TypeScript)** project instead of plain HTML files. Each part of the page is a separate component:
+
+```text
+frontend/
+├── app/
+│   ├── globals.css          global styles
+│   ├── layout.tsx           root layout shared by every page
+│   └── page.tsx             home page
+├── components/
+│   ├── ui/                  reusable UI building blocks
+│   ├── site-header.tsx      header and navigation
+│   ├── hero-section.tsx     page introduction
+│   ├── event-catalog.tsx    event list, search and filters
+│   ├── event-card.tsx       one event (article card)
+│   ├── event-portal.tsx     combines the catalog and the registration form
+│   ├── registration-form.tsx  registration form and validation
+│   └── site-footer.tsx      footer
+├── lib/
+│   ├── events.ts            sample event data
+│   └── utils.ts             helper functions
+└── public/
+    ├── events/              event images
+    └── apple-icon.png, icon-dark-32x32.png, ...   site icons
+```
 
 ### 2.3 Requirement Coverage
 
-| Requirement | How it is met |
+Where each exam requirement is implemented in the code:
+
+| Requirement | Where it is implemented |
 |---|---|
-| Semantic HTML5 | `header`, `nav`, `main`, `section`, `article` (one per event card), `footer`, `form`, `fieldset`/`legend`, `dialog`; `div` is used only for generic grouping |
-| Form labels | Every input has a unique `id`, a `name`, and a matching `<label for>` |
-| `aria-label` | Added to every input, select and textarea, as the exam requires |
-| `aria-describedby` / `aria-invalid` | Inputs link to help text and error text; invalid fields are flagged |
-| Validation | Full name, email, contact number, student ID, event, attendance type, and terms, with messages next to each field |
-| Color contrast | Dark text on light backgrounds and white text on dark navy; no light-gray text; placeholder color is darkened |
-| Not color alone | Errors and low-slot warnings carry a ⚠ icon and text, not just color |
-| Keyboard and focus | Native controls, skip link, 3px orange `:focus-visible` outline, native dialog focus handling |
-| Alt text | Every image has descriptive `alt` text |
-| Dynamic announcements | `aria-live` regions for the result count, event summary, form status, and confirmation |
-| Responsive | Cards stack on mobile, form fields become full width, navigation collapses into a toggle button |
+| Semantic HTML5 tags instead of generic wrappers | `site-header.tsx` (`<header>`), `app/page.tsx` (`<main>`), `hero-section.tsx`, `event-catalog.tsx` and `registration-form.tsx` (`<section>`), `event-card.tsx` (`<article>`), `site-footer.tsx` (`<footer>`) |
+| Proper form labels | `registration-form.tsx`: each input has a `<label>` linked by `htmlFor`/`id` |
+| `aria-label` on input fields | `registration-form.tsx` and the search and filter inputs in `event-catalog.tsx` |
+| Accessible color contrast | `app/globals.css` color tokens |
+| Image `alt` text | `event-card.tsx` (event images in `public/events/`) |
+| At least 6 sample events | `lib/events.ts` |
+| Search and category filtering | `event-catalog.tsx` |
+| Client-side validation and confirmation | `registration-form.tsx` |
+| Responsive layout | `app/globals.css` and the components' layout classes |
+
+The generated code was reviewed against this table before it was committed to the `/frontend` directory.
 
 ---
 
@@ -359,10 +379,10 @@ public string GetUserRegistration(string inputEmail)
 ```text
 /
 ├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   └── images/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   └── public/
 ├── database/
 │   └── schema.sql
 ├── backend/
@@ -375,9 +395,10 @@ public string GetUserRegistration(string inputEmail)
 
 ### Setup Instructions
 
-**Frontend (no installation needed)**
+**Frontend** (requires Node.js 18 or newer)
 1. Clone the repository.
-2. Open `frontend/index.html` in a modern browser (Chrome, Edge or Firefox). No server or internet connection is required.
+2. In a terminal: `cd frontend`, then `npm install`, then `npm run dev`.
+3. Open http://localhost:3000 in a browser. The frontend uses sample data from `lib/events.ts` and does not call a server.
 
 **Database**
 1. Install SQL Server Express or LocalDB, and SQL Server Management Studio or Azure Data Studio.
@@ -390,11 +411,11 @@ public string GetUserRegistration(string inputEmail)
 2. Create the test project and run it:
    `dotnet new xunit -o backend.tests`, `dotnet add backend.tests package Moq`, `dotnet add backend.tests reference backend`, then `dotnet test`
 
-The prototype does not include a running API; the frontend uses sample data in JavaScript and does not call a server.
+The prototype does not include a running API; the frontend uses sample data and does not call a server.
 
 ### AI Disclosure Statement
 
-**AI tool used:** Claude (Anthropic) was the only AI tool used. It generated the Task 1 system design, the Task 2 frontend code, the Task 3 database design, ERD and SQL script, and the Task 4 unit tests, security diagnosis and refactored code.
+**AI tools used:** Claude (Anthropic) generated the Task 1 system design, the Task 3 database design, ERD and SQL script, and the Task 4 unit tests, security diagnosis and refactored code. The Task 2 frontend was generated with [state the tool used for Task 2].
 
 **How outputs were verified:**
 - Task 1: compared against the exam's requirements and the team's actual size, roles and file layout.
@@ -408,8 +429,7 @@ The prototype does not include a running API; the frontend uses sample data in J
 | Task # | Identified AI Flaw / Limitation | Manual Correction Applied | Member Responsible |
 |---|---|---|---|
 | Task 1 | The design assumed a four-person team, with a separate QA/Security column in the timeline and a `Role` column on `Users`; our group has three members and no login | Task 4 reassigned to Members 1 & 3 as the exam allows; roster updated; `Role` dropped from the schema since the prototype has no authentication | Member 1 |
-| Task 1 | The AI's repository structure used `styles.css`, `app.js` and `Services/RegistrationService.cs`, which do not match the exam's required paths | Used `style.css`, `script.js` and `/backend/RegistrationService.cs`; documented the final structure in Task 5 | Member 1 |
-| Task 2 | The sample event images are generated SVG illustrations, not photographs, so photo-style alt text would be inaccurate | Wrote alt text describing what each illustration actually shows; real photos can be swapped in with updated alt text | Member 2 |
+| Task 1 | The AI's repository structure used `styles.css`, `app.js` and `Services/RegistrationService.cs`, which do not match the exam's required paths | Used the exam's required `/frontend`, `/database` and `/backend/RegistrationService.cs` paths; documented the final structure in Task 5 | Member 1 |
 | Task 3 | The overview schema stored the venue as a plain text column on `Events`, repeating venue data and falling short of 3NF | Split out `Venues`, `EventCategories` and `AttendanceTypes` tables with foreign keys | Member 3 |
 | Task 3 | The suggested `UNIQUE (StudentID)` would allow only one user without a student ID in SQL Server, and `RESTRICT` is not valid T-SQL | Used a filtered unique index (`WHERE StudentID IS NOT NULL`) and `ON DELETE NO ACTION` | Member 3 |
 | Task 4 | The flawed snippet queries `Registrations.Email`, which does not exist in our 3NF schema, and `.ToString()` on a missing row crashes | Joined `Registrations` to `Users`, selected `RegistrationID`, and return `null` when no row exists | Members 1 & 3 |
