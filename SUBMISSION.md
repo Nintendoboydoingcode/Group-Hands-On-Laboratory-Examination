@@ -4,10 +4,10 @@
 
 | Member | Name | Assigned Role | Core Responsibilities |
 |---|---|---|---|
-| Member 1 | _[Your name]_ | Systems Architect & Prompt Lead | Task 1 + Task 5 |
-| Member 2 | _[Name]_ | Frontend Engineer | Task 2 |
-| Member 3 | _[Name]_ | Database & Backend Engineer | Task 3 |
-| Member 4 | _[Name / "N/A – group of 3"]_ | QA & Security Engineer | Task 4 |
+| Member 1 | John Cyrel S Nazareno | Systems Architect & Prompt Lead | Task 1 + Task 5 |
+| Member 2 | Marwan T Bawayan | Frontend Engineer | Task 2 |
+| Member 3 |  | Database & Backend Engineer | Task 3 |
+
 
 ---
 
